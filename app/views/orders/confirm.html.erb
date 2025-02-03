@@ -1,0 +1,20 @@
+<div class='container mt-3 mb-5'>
+    <h1 class='text-center mb-5'>注文内容の確認</h1>
+
+    <div class='col-md-6 mx-auto mb5'>
+        <p>以下の内容でよろしいでしょうか?</p>
+        <div class='mb3'>
+            <div class='form-label border-start border-primary border-4 ps-1'>
+                <%= t('activerecord.attributes.order.name') %>
+            </div>
+            <%= @order.name %>
+        </div>
+    </div>
+
+    <%= form_for @order, url: orders_path do |f| %>
+        <%= f.hidden_field :name %>
+        <div class='d-grid col-md-6 mx-auto'>
+            <%= f.button 'OK', class: 'btn btn-lg btn-primary' %>
+        </div>
+    <% end %>
+</div>
