@@ -1,0 +1,16 @@
+<div class='container mt-3 mb-5'>
+    <h1 class='text-center mb-5'>注文フォーム</h1>
+
+    <%= form_for @order, url: confirm_orders_path do |f| %>
+        <div class='col-md-6 mx-auto mb-5'>
+            <div class='mb-3'>
+                <%= f.label :name, class: 'form-label border-start border-primary border-4 ps-1' %>
+                <%= f.text_field :name, size: 40, placeholder: 'サンプル太郎', class: 'form-control' %>
+            </div>
+        </div>
+
+        <div class='d-grid col-md-6 mx-auto'>
+            <%= f.button '確認画面へ', class: 'btn btn-lg btn-primary' %>
+        </div>
+    <% end %>
+</div>
