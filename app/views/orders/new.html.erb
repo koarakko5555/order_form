@@ -6,24 +6,36 @@
             <div class='mb-3'>
                 <%= f.label :name, class: 'form-label border-start border-primary border-4 ps-1' %>
                 <%= f.text_field :name, size: 40, placeholder: 'サンプル太郎', class: 'form-control' %>
+                <% @order.errors.full_messages_for(:name).each do |message| %>
+                    <div class='text-danger'>＊<%= message %></div>
+                <% end %>
             </div>
         </div>
         <div class='col-md-6 mx-auto mb-5'>
             <div class='mb-3'>
                 <%= f.label :email, class: 'form-label border-start border-primary border-4 ps-1' %>
                 <%= f.text_field :email, size: 100, placeholder: 'sample@example.com', class: 'form-control' %>
+                <% @order.errors.full_messages_for(:email).each do |message| %>
+                    <div class='text-danger'>＊<%= message %></div>
+                <% end %>
             </div>
         </div>
         <div class='col-md-6 mx-auto mb-5'>
             <div class='mb-3'>
                 <%= f.label :telephone, class: 'form-label border-start border-primary border-4 ps-1' %>
                 <%= f.text_field :telephone, size: 40, placeholder: '0312345678', class: 'form-control' %>
+                <% @order.errors.full_messages_for(:telephone).each do |message| %>
+                    <div class='text-danger'>＊<%= message %></div>
+                <% end %>
             </div>
         </div>
         <div class='col-md-6 mx-auto mb-5'>
             <div class='mb-3'>
                 <%= f.label :delivery_address, class: 'form-label border-start border-primary border-4 ps-1' %>
                 <%= f.text_field :delivery_address, size: 40, placeholder: 'お届け先の住所を入力してください', class: 'form-control' %>
+                <% @order.errors.full_messages_for(:delivery_address).each do |message| %>
+                    <div class='text-danger'>＊<%= message %></div>
+                <% end %>
             </div>
         </div>
 
