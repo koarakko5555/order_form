@@ -3,3 +3,6 @@ ja:
     attributes:
       order:
         name: お名前
+        email: メールアドレス
+        telephone: 電話番号
+        delivery_address: お届け先住所
