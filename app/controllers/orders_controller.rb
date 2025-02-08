@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
 
     def confirm
         @order = Order.new(order_params)
+
+        return render :new if @order.invalid?
     end
 
     def create
@@ -20,7 +22,7 @@ class OrdersController < ApplicationController
     def complete
         @order = Order.find_by(id: session[:order_id])
         return redirect_to new_order_url if @order.blank?
-        
+
         session[:order_id] = nil
     end
 
