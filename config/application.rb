@@ -27,8 +27,8 @@ module OrderForm
     config.active_record.default_timezone = :local
 
     # バリデーションエラーが発生したときの表示処理を上書きして無効化する場合はコメントアウトしてください。
-    # config.action_view.field_error_proc = proc do |html_tag, _|
-    #   html_tag.html_safe
-    # end
+    config.action_view.field_error_proc = proc do |html_tag, _|
+      html_tag.html_safe
+    end
   end
 end
