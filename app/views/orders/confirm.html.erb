@@ -33,6 +33,22 @@
             </div>
             <%= @order.delivery_address %>
         </div>
+        <div class='mb3'>
+            <div class='form-label border-start border-primary border-4 ps-1'>
+                <%= t('activerecord.attributes.order.payment_method_id') %>
+            </div>
+            <%= @order.payment_method.name %>
+        </div>
+        <div class='mb3'>
+            <div class='form-label border-start border-primary border-4 ps-1'>
+                <%= t('activerecord.attributes.order.other_comment') %>
+            </div>
+            <% if @order.other_comment.present? %>
+                <%= simple_format(@order.other_comment) %>
+            <% else %>
+                <span class='text-secondary'>(未記入)</span>
+            <% end %>
+        </div>
     </div>
 
     <%= form_for @order, url: orders_path do |f| %>
@@ -40,6 +56,8 @@
         <%= f.hidden_field :email %>
         <%= f.hidden_field :telephone %>
         <%= f.hidden_field :delivery_address %>
+        <%= f.hidden_field :payment_method_id %>
+        <%= f.hidden_field :other_comment %>
         <div class='d-grid col-md-6 mx-auto mb-3'>
             <%= f.button 'OK', class: 'btn btn-lg btn-primary' %>
         </div>

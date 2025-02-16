@@ -4,31 +4,39 @@
     <%= form_for @order, url: confirm_orders_path do |f| %>
         <div class='col-md-6 mx-auto mb-5'>
             <div class='mb-3'>
-                <div>お名前</div>
-                <%# <%= f.label :name, class: 'form-label border-start border-primary border-4 ps-1' %>
+                <%= f.label :name, class: 'form-label border-start border-primary border-4 ps-1' %>
                 <%= f.text_field :name, size: 40, placeholder: 'サンプル太郎', class: 'form-control' %>
                 <%= render partial: 'shared/error_messages', locals: { record: @order, symbol: :name} %>
             </div>
-        </div>
-        <div class='col-md-6 mx-auto mb-5'>
+
             <div class='mb-3'>
                 <%= f.label :email, class: 'form-label border-start border-primary border-4 ps-1' %>
                 <%= f.text_field :email, size: 100, placeholder: 'sample@example.com', class: 'form-control' %>
                 <%= render partial: 'shared/error_messages', locals: { record: @order, symbol: :email} %>
             </div>
-        </div>
-        <div class='col-md-6 mx-auto mb-5'>
+
             <div class='mb-3'>
                 <%= f.label :telephone, class: 'form-label border-start border-primary border-4 ps-1' %>
                 <%= f.text_field :telephone, size: 40, placeholder: '0312345678', class: 'form-control' %>
                 <%= render partial: 'shared/error_messages', locals: { record: @order, symbol: :telephone} %>
             </div>
-        </div>
-        <div class='col-md-6 mx-auto mb-5'>
+
             <div class='mb-3'>
                 <%= f.label :delivery_address, class: 'form-label border-start border-primary border-4 ps-1' %>
                 <%= f.text_field :delivery_address, size: 40, placeholder: 'お届け先の住所を入力してください', class: 'form-control' %>
                 <%= render partial: 'shared/error_messages', locals: { record: @order, symbol: :delivery_address} %>
+            </div>
+
+            <div class='mb-3'>
+                <%= f.label :payment_method_id, class: 'form-label border-start border-primary border-4 ps-1' %>
+                <%= f.select :payment_method_id, PaymentMethod.selectable_methods, { include_blank: true }, class: 'form-select' %>
+                <%= render partial: 'shared/error_messages', locals: { record: @order, symbol: :payment_method_id} %>
+            </div>
+
+            <div class='mb-3'>
+                <%= f.label :other_comment, class: 'form-label border-start border-primary border-4 ps-1' %>
+                <%= f.text_area :other_comment, size: '60x6', placeholder: 'その他、ご要望がありましたらご入力ください。', class: 'form-control' %>
+                <%= render partial: 'shared/error_messages', locals: { record: @order, symbol: :other_comment} %>
             </div>
         </div>
 

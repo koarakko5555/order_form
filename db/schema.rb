@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_12_234707) do
+ActiveRecord::Schema[7.0].define(version: 2025_02_15_122019) do
   create_table "orders", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -18,6 +18,9 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_12_234707) do
     t.string "email", null: false
     t.string "telephone", null: false
     t.string "delivery_address", null: false
+    t.integer "payment_method_id"
+    t.string "other_comment", limit: 1000, default: "", null: false
+    t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
   end
 
   create_table "payment_methods", force: :cascade do |t|
@@ -26,4 +29,5 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_12_234707) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "orders", "payment_methods", on_update: :restrict, on_delete: :restrict
 end
