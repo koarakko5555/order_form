@@ -8,3 +8,4 @@ ja:
         delivery_address: お届け先住所
         payment_method_id: 支払い方法
         other_comment: その他・ご要望
+        direct_mail_enabled: メールマガジンの配信

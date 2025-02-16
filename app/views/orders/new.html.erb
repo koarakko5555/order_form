@@ -38,6 +38,24 @@
                 <%= f.text_area :other_comment, size: '60x6', placeholder: 'その他、ご要望がありましたらご入力ください。', class: 'form-control' %>
                 <%= render partial: 'shared/error_messages', locals: { record: @order, symbol: :other_comment} %>
             </div>
+
+            <div class='mb-3'>
+                <%= f.label :direct_mail_enabled, class: 'form-label border-start border-primary border-4 ps-1' %>
+                <div class='mb-2 fs-6'>*お得な情報満載のメールマガジンを配信しております。</div>
+                <div class='form-check form-check-inline'>
+                    <label class='form-check-label'>
+                        <%= f.radio_button :direct_mail_enabled, false, class: 'form-check-input' %>
+                        配信は不要
+                    </label>
+                </div>
+                <div class='form-check form-check-inline'>
+                    <label class='form-check-label'>
+                        <%= f.radio_button :direct_mail_enabled, true, class: 'form-check-input' %>
+                        配信を希望する
+                    </label>
+                </div>
+                <%= render partial: 'shared/error_messages', locals: { record: @order, symbol: :direct_mail_enabled} %>
+            </div>
         </div>
 
         <div class='d-grid col-md-6 mx-auto'>
