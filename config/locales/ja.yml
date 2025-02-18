@@ -9,3 +9,4 @@ ja:
         payment_method_id: 支払い方法
         other_comment: その他・ご要望
         direct_mail_enabled: メールマガジンの配信
+        inflow_source_ids: サイトを知ったきっかけ

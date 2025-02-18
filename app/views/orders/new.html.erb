@@ -56,6 +56,16 @@
                 </div>
                 <%= render partial: 'shared/error_messages', locals: { record: @order, symbol: :direct_mail_enabled} %>
             </div>
+
+            <div class='mb-3'>
+                <%= f.label :inflow_source_ids, class: 'form-label border-start border-primary border-4 ps-1' %>
+                <div class='mb-2'>*このサイトをどこでお知りになりましたか？(複数選択可)</div>
+                <%= f.collection_check_boxes :inflow_source_ids, InflowSource.all, :id, :name do |inflow_source| %>
+                    <div class='form-check form-check-inline'>
+                        <%= inflow_source.label { inflow_source.check_box(class: 'form-check-input') + " #{inflow_source.text}" } %>
+                    </div>
+                <% end %>
+            </div>
         </div>
 
         <div class='d-grid col-md-6 mx-auto'>

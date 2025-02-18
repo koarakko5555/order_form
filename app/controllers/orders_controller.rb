@@ -37,6 +37,7 @@ class OrdersController < ApplicationController
                     :delivery_address,
                     :payment_method_id,
                     :other_comment,
-                    :direct_mail_enabled)
+                    :direct_mail_enabled,
+                    inflow_source_ids: [])
     end
 end

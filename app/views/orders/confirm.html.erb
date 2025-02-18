@@ -55,6 +55,12 @@
             </div>
             <%= @order.direct_mail_enabled_text %>
         </div>
+        <div class='mb3'>
+            <div class='form-label border-start border-primary border-4 ps-1'>
+                <%= t('activerecord.attributes.order.inflow_source_ids') %>
+            </div>
+            <%= @order.inflow_sources.map(&:name).join(', ') %>
+        </div>
     </div>
 
     <%= form_for @order, url: orders_path do |f| %>
@@ -65,6 +71,11 @@
         <%= f.hidden_field :payment_method_id %>
         <%= f.hidden_field :other_comment %>
         <%= f.hidden_field :direct_mail_enabled %>
+
+        <% @order.inflow_source_ids.each do |inflow_source_id| %>
+            <%= hidden_field_tag 'order[inflow_source_ids][]', inflow_source_id %>
+        <% end %>
+
         <div class='d-grid col-md-6 mx-auto mb-3'>
             <%= f.button 'OK', class: 'btn btn-lg btn-primary' %>
         </div>

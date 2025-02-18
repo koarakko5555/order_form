@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_16_060338) do
+ActiveRecord::Schema[7.0].define(version: 2025_02_16_230946) do
+  create_table "inflow_sources", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_inflow_sources", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "inflow_source_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inflow_source_id"], name: "index_order_inflow_sources_on_inflow_source_id"
+    t.index ["order_id"], name: "index_order_inflow_sources_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -30,5 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_16_060338) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "order_inflow_sources", "inflow_sources", on_update: :restrict, on_delete: :restrict
+  add_foreign_key "order_inflow_sources", "orders", on_delete: :cascade
   add_foreign_key "orders", "payment_methods", on_update: :restrict, on_delete: :restrict
 end
