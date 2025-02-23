@@ -1,6 +1,44 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
+  describe '#total_price' do
+    let(:params) do
+      {
+        order_products_attributes: [
+          {
+            product_id: 1,
+            quantity: 3
+          },
+          {
+            product_id: 2,
+            quantity: 2
+          }
+        ]
+      }
+    end
+
+    subject { Order.new(params).total_price }
+    it { is_expected.to eq 700 + 70 }
+
+    context '消費税に端数が出た場合' do
+      before do
+        create(:product, id: 99, price: 299)
+      end
+      let(:params) do
+        {
+          order_products_attributes: [
+            {
+              product_id: 99,
+              quantity: 1
+            }
+          ]
+        }
+      end
+      # お値段 299 消費税 29.9 切り上げ = 30
+      it { is_expected.to eq 329 }
+    end
+  end
+
   describe '#valid?' do
     let(:name) { 'デキズマン' }
     let(:email) { 'test@example.com' }

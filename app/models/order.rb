@@ -1,6 +1,8 @@
 require 'nkf'
 
 class Order < ApplicationRecord
+  TAX_RATE = 1.1
+
   belongs_to :payment_method
   has_many :order_inflow_sources
   has_many :inflow_sources, through: :order_inflow_sources
@@ -18,6 +20,11 @@ class Order < ApplicationRecord
 
   after_initialize :format_telephone
   after_initialize :format_email
+
+  def total_price
+    # (order_products.map(&:order_price).sum * TAX_RATE).ceil
+    (BigDecimal(order_products.map(&:order_price).sum.to_s) * BigDecimal(TAX_RATE.to_s)).ceil
+  end
   private
   
   def format_telephone
