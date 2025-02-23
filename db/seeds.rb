@@ -12,6 +12,7 @@ ApplicationRecord.transaction do
   Order.delete_all
   PaymentMethod.delete_all
   InflowSource.delete_all
+  Product.delete_all
 
   PaymentMethod.create(id: 1, name: 'クレジットカード')
   PaymentMethod.create(id: 2, name: '銀行振込')
@@ -24,4 +25,11 @@ ApplicationRecord.transaction do
   InflowSource.create(id: 3, name: 'r-1グランプリ')
   InflowSource.create(id: 4, name: 'キングオブコント')
   InflowSource.create(id: 5, name: '座セカンド')
+
+  Product.create(id: 1, name: 'おいしいバナナ', price: 100)
+  Product.create(id: 2, name: 'たのしいオレンジ', price: 200)
+  Product.create(id: 3, name: 'さわやかアップル', price: 400)
+  Product.create(id: 4, name: '元気なメロン', price: 600)
+  Product.create(id: 5, name: 'やわらかピーチ', price: 450)
+  Product.create(id: 6, name: '不思議なマンゴー', price: 1200)
 end

@@ -10,3 +10,7 @@ ja:
         other_comment: その他・ご要望
         direct_mail_enabled: メールマガジンの配信
         inflow_source_ids: サイトを知ったきっかけ
+        order_products: 注文内容
+      order_product:
+        product_id: 商品
+        quantity: 数量

@@ -34,6 +34,35 @@
             </div>
 
             <div class='mb-3'>
+                <%= f.label :order_products, class: 'form-label border-start border-primary border-4 ps-1' %>
+                <%= f.fields_for :order_products do |pf| %>
+                    <div class='border border-secondary border-1 rounded p-3 mb-3'>
+                        <div class='mb-3'>
+                            <%= pf.label :product_id, t('activerecord.attributes.order_product.product_id'), class: 'form-label border-start border-primary border-2 ps-1' %>
+                            <%= pf.select :product_id, Product.selectable_products, { include_blank: true }, class: 'form-select' %>
+                            <%= render partial: 'shared/error_messages', locals: { record: pf.object, symbol: :product_id} %>
+                        </div>
+
+                        <div class='mb-3'>
+                            <%= pf.label :quantity, t('activerecord.attributes.order_product.quantity'), class: 'form-label border-start border-primary border-2 ps-1' %>
+                            <%= pf.number_field :quantity, size: 4, placeholder: '数量', class: 'form-control' %>
+                            <%= render partial: 'shared/error_messages', locals: { record: pf.object, symbol: :quantity} %>
+                        </div>
+
+                        <% if @order.order_products.size > 1 %>
+                            <div class='d-grid d-md-flex justify-content-end'>
+                                <%# <% f.button '削除', name: 'delete_product', value: pf.index, class: 'btn-danger' %>
+                                <button type="submit" name="delete_product" value="<%= pf.index || pf.object.id %>" class="btn btn-danger">削除</button>
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
+                <% if @order.order_products.size < 3 %>
+                    <%= f.button '商品を追加する', name: 'add_product', class: 'btn btn-primary' %>
+                <% end %>
+            </div>
+
+            <div class='mb-3'>
                 <%= f.label :other_comment, class: 'form-label border-start border-primary border-4 ps-1' %>
                 <%= f.text_area :other_comment, size: '60x6', placeholder: 'その他、ご要望がありましたらご入力ください。', class: 'form-control' %>
                 <%= render partial: 'shared/error_messages', locals: { record: @order, symbol: :other_comment} %>

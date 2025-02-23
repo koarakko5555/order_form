@@ -4,6 +4,9 @@ class Order < ApplicationRecord
   belongs_to :payment_method
   has_many :order_inflow_sources
   has_many :inflow_sources, through: :order_inflow_sources
+  has_many :order_products
+
+  accepts_nested_attributes_for :order_products
 
   validates :name, presence:true, length: { maximum: 40 }
   validates :email, presence:true, length: { maximum: 100 }, email_format: true
