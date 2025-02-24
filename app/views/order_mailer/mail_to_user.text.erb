@@ -1,0 +1,26 @@
+<%= @order.name %>様
+
+この度はご注文いただき、誠にありがとうございます。
+
+以下の注文内容に基づき、商品を発送させていただきます。
+到着まで今しばらくお待ちください。
+
+[注文内容]
+<% @order.order_products.each do |order_product| %>
+<%= t('activerecord.attributes.order_product.product_id') %>: <%= order_product.name_and_price_text %>
+<%= t('activerecord.attributes.order_product.quantity') %>: <%= order_product.quantity %>
+
+<% end %>
+合計金額: <%= number_to_currency(@order.total_price) %>(税込)
+
+<%= t('activerecord.attributes.order.payment_method_id') %>: <%= @order.payment_method.name %>
+<%= t('activerecord.attributes.order.delivery_address') %>: <%= @order.delivery_address %>
+<%= t('activerecord.attributes.order.telephone') %>: <%= @order.telephone %>
+<%= t('activerecord.attributes.order.other_comment') %>: <%= @order.other_comment %>
+<%= t('activerecord.attributes.order.direct_mail_enabled') %>: <%= @order.direct_mail_enabled_text %>
+
+------------------------------------
+楽しい果物ファーム
+https://fruit.example.com
+メール: support@example.com
+------------------------------------

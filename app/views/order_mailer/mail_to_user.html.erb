@@ -1,0 +1,27 @@
+<%= @order.name %>様<br>
+<br>
+この度はご注文いただき、誠にありがとうございます。<br>
+<br>
+以下の注文内容に基づき、商品を発送させていただきます。<br>
+到着まで今しばらくお待ちください。<br>
+<br>
+[注文内容]<br>
+<% @order.order_products.each do |order_product| %>
+<%= t('activerecord.attributes.order_product.product_id') %>: <%= order_product.name_and_price_text %><br>
+<%= t('activerecord.attributes.order_product.quantity') %>: <%= order_product.quantity %><br>
+<br>
+<% end %>
+合計金額: <%= number_to_currency(@order.total_price) %>(税込)<br>
+<br>
+<%= t('activerecord.attributes.order.payment_method_id') %>: <%= @order.payment_method.name %><br>
+<%= t('activerecord.attributes.order.delivery_address') %>: <%= @order.delivery_address %><br>
+<%= t('activerecord.attributes.order.telephone') %>: <%= @order.telephone %><br>
+<%= t('activerecord.attributes.order.other_comment') %>: <%= @order.other_comment %><br>
+<%= t('activerecord.attributes.order.direct_mail_enabled') %>: <%= @order.direct_mail_enabled_text %><br>
+<br>
+------------------------------------<br>
+楽しい果物ファーム<br>
+<%= link_to 'https://fruit.example.com', 'https://fruit.example.com' %><br>
+メール: <%= link_to 'support@example.com', 'mailto:support@example.com' %><br>
+------------------------------------<br>
+<br>
